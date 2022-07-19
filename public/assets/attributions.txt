@@ -1,0 +1,7 @@
+search : https://www.svgrepo.com/svg/13682/search
+plus: https://www.svgrepo.com/svg/311489/add
+delete: <a href="https://iconscout.com/icons/delete" target="_blank">Delete Icon</a> on <a href="https://iconscout.com">IconScout</a>
+edit: https://iconscout.com/icon/edit-2653695 <a href="https://iconscout.com/icons/edit" target="_blank">Edit Icon</a> on <a href="https://iconscout.com">IconScout</a>
+more: <a href="https://iconscout.com/icons/more" target="_blank">More Icon</a> on <a href="https://iconscout.com">IconScout</a>
+add: <a href="https://iconscout.com/icons/add" target="_blank">Add Icon</a> on <a href="https://iconscout.com">IconScout</a>
+close: <a href="https://iconscout.com/icons/close" target="_blank">Close Icon</a> by <a href="https://iconscout.com/contributors/fluent" target="_blank">Microsoft</a>
