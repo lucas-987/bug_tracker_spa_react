@@ -1,12 +1,24 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import projectReducer from "../features/Project/projectSlice";
+import projectReducer, { ProjectState } from "../features/Project/projectSlice";
+import { persistReducer, persistStore } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+import { Reducer } from 'react';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persistedProjectReducer = persistReducer(persistConfig, projectReducer)
 
 export const store = configureStore({
   reducer: {
-    project: projectReducer,
+    project: persistedProjectReducer
   },
   devTools: true
 });
+
+export const persistor = persistStore(store)
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
