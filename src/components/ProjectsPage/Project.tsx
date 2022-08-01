@@ -1,5 +1,7 @@
 import React, { MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../app/hooks";
+import { deleteProject } from "../../features/Project/projectSlice";
 import ProjectInterface from "../../interfaces/Project";
 
 interface Props {
@@ -8,9 +10,10 @@ interface Props {
 
 function Project({ project } : Props) {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const onDelete = (e: React.SyntheticEvent) => {
-        console.log(project.id)
+        dispatch(deleteProject(project.id))
     }
 
     const onClick = (e: MouseEvent<HTMLDivElement>) => {

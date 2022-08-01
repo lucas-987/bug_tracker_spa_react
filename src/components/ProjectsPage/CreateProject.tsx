@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { useAppDispatch } from "../../app/hooks";
+import { createProject } from "../../features/Project/projectSlice";
 import Project from "../../interfaces/Project";
 
 function CreateProject() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
+
+    const dispatch = useAppDispatch();
 
     const createNewProject = (e: React.SyntheticEvent) => {
         e.preventDefault();
@@ -18,12 +22,14 @@ function CreateProject() {
             return;
         }
         
-        let newProject = {
+        let newProject: Project = {
+            id: -1,
             title,
             description: description === "" ? null : description
         };
 
-        //add project to store
+        dispatch(createProject(newProject));
+
         setTitle("");
         setDescription("");
         setIsOpen(false);

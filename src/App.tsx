@@ -3,10 +3,10 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import BugPage from "./features/BugPage/BugPage";
-import ProjectPage from "./features/ProjectPage/ProjectPage";
-import Header from "./features/Header";
-import ProjectsPage from "./features/ProjectsPage/ProjectPage";
+import BugPage from "./components/BugPage/BugPage";
+import ProjectPage from "./components/ProjectPage/ProjectPage";
+import Header from "./components/Header";
+import ProjectsPage from "./components/ProjectsPage/ProjectsPage";
 
 function App() {
   return (
