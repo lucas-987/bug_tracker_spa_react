@@ -412,6 +412,14 @@ body {
         width: 25px;
         cursor: pointer;
     }
+
+    .filter {
+        cursor: pointer;
+    }
+    .filterSelected {
+        @extend .filter;
+        font-weight: bold;
+    }
 }
 
 .bugTitle {
