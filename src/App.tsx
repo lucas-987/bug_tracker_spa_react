@@ -9,19 +9,17 @@ import Header from "./components/Header";
 import ProjectsPage from "./components/ProjectsPage/ProjectsPage";
 
 function App() {
-  return (
-    <Router>
-      <Header />
+    return (
+        <Router>
+            <Routes>
+                <Route path="/project/:id" element={<ProjectPage />} />
 
-      <Routes>
-        <Route path="/project/:id" element={<ProjectPage />} />
+                <Route path="/bug/:id" element={<BugPage />} />
 
-        <Route path="/bug/:id" element={<BugPage />} />
-
-        <Route path="/" element={<ProjectsPage />} />
-      </Routes>
-    </Router>
-  );
+                <Route path="/" element={<ProjectsPage />} />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;

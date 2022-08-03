@@ -1,5 +1,8 @@
+import Bug from "./Bug";
+
 export default interface Project {
-    id: number,
+    id: number;
     title: string;
-    description: string | null;
+    description?: string | null;
+    bugs?: Bug[] | null;
 };

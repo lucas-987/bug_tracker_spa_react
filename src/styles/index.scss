@@ -77,9 +77,30 @@ body {
     padding: 5px 0px 5px 0px;
     text-align: center;
 
-    h1 {
-        font-size: 3.5rem;
-        font-weight: normal;
+    .titleWrapper{
+        display: inline-flex;
+        justify-content: center;
+        width: 100%;
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: normal;
+        }
+
+        img {
+            width: 25px;
+            flex: none;
+            align-self: center;
+            margin: 0px 0px 0px 10px;
+            cursor: pointer;
+        }
+
+        input {
+            width: 80%;
+            font-size: 3rem;
+            font-weight: normal;
+            outline: none;
+        }
     }
 }
 
@@ -264,6 +285,7 @@ body {
 }
 .projectDescriptionWrapper {
     @extend .card;
+    position: relative;
     font-size: 15px;
     margin: 20px 20px 20px 20px;
     padding: 20px 10px 20px 10px;
@@ -271,17 +293,47 @@ body {
     border: 1px solid $google-border;
 
     .projectDescription {
-        //margin: 20px 20px 0px 20px;
+        margin: 15px 0px 0px 0px;
         //text-align: center;
         display: flex;
         justify-content: center;
         max-height: 190px;
         overflow: hidden;
         //text-overflow: " Read more ...";
+
+        &.open {
+            max-height: none;
+        }
+    }
+
+    textarea {
+        width: 100%;
+        height: 200px;
+        border: none;
+        outline: none;
+        resize: none;
     }
 
     .readMoreButton {
         margin: 5px 0px 0px 0px;
+    }
+
+    .icon {
+        width: 25px;
+        position: absolute;
+        cursor: pointer;
+    }
+
+    .editIcon {
+        @extend .icon;
+        top: 10px;
+        right: 10px;
+    }
+
+    .cancelIcon {
+        @extend .icon;
+        top: 10px;
+        right: 40px;
     }
 }
 

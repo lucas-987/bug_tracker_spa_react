@@ -130,10 +130,62 @@ const create = async (project: Project) => {
     return result;
 }
 
+const update = async (project: Project) => {
+    let body: any = {
+        title: project.title
+    }
+
+    if(project.description !== undefined) body.description = project.description
+
+    const response = await fetch(API_URL + `${project.id}`, {
+        headers,
+        method: "PUT",
+        body: JSON.stringify(body)
+    })
+
+    let result: Result;
+
+    switch(response.status) {
+        case 200:
+            result = {
+                success: true,
+                data: project
+            };
+            break;
+        case 400:
+            result = {
+                success: false,
+                message: (await response.json()).message
+            };
+            break;
+        case 404:
+            result = {
+                success: false,
+                message: "Project not found"
+            };
+            break;
+        case 500:
+            result = {
+                success: false,
+                message: "Internal server error"
+            };
+            break;
+        default:
+            result = {
+                success: false,
+                message: "Unknown error"
+            }
+            break;
+    }
+
+    return result;
+}
+
 const projectService = {
     getAll,
     deleteById,
-    create
+    create,
+    update
 };
 
 export default projectService;

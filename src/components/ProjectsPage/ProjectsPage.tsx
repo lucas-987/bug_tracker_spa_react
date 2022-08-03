@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import CreateProject from "./CreateProject";
 import Project from "./Project";
 import { getAllProjects, selectProjects } from "../../features/Project/projectSlice"
+import Header from "../Header";
 
 function ProjectsPage() {
     const dispatch = useAppDispatch();
@@ -14,15 +15,19 @@ function ProjectsPage() {
     const projects = useAppSelector(selectProjects);
 
     return (
-        <div className="grid">
+        <>
+            <Header />
+            <div className="grid">
 
-            <CreateProject />
+                <CreateProject />
 
-            {projects.map((project, i) => 
-                <Project key={project.id} project={project} />
-            )}
+                {projects.map((project, i) => 
+                    <Project key={project.id} project={project} />
+                )}
 
-        </div>
+            </div>
+        </>
+
     );
 }
 
