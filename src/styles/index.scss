@@ -147,6 +147,41 @@ body {
     box-shadow: 2px 2px 5px $shadow;
 }
 
+.descriptionWrapper {
+    @extend .card;
+    position: relative;
+
+    .description {
+        margin: 15px 0px 0px 0px;
+    }
+
+    textarea {
+        width: 100%;
+        height: 200px;
+        border: none;
+        outline: none;
+        resize: none;
+    }
+
+    .icon {
+        width: 25px;
+        position: absolute;
+        cursor: pointer;
+    }
+
+    .editIcon {
+        @extend .icon;
+        top: 10px;
+        right: 10px;
+    }
+
+    .cancelIcon {
+        @extend .icon;
+        top: 10px;
+        right: 40px;
+    }
+}
+
 .project {
     @extend .card;
     position: relative;
@@ -219,7 +254,7 @@ body {
             margin: 0px 10px 0px 10px;
         }
     
-        input, textarea {
+        input, textarea, select {
             outline: none;
             border: 1px solid $google-border;
             border-radius: 10px;
@@ -277,6 +312,7 @@ body {
 }
 
 /****************Bugs************/
+
 .projectTitle {
     text-align: center;
     margin: 20px 0px 0px 0px;
@@ -284,8 +320,7 @@ body {
     font-weight: 600;
 }
 .projectDescriptionWrapper {
-    @extend .card;
-    position: relative;
+    @extend .descriptionWrapper;
     font-size: 15px;
     margin: 20px 20px 20px 20px;
     padding: 20px 10px 20px 10px;
@@ -293,7 +328,7 @@ body {
     border: 1px solid $google-border;
 
     .projectDescription {
-        margin: 15px 0px 0px 0px;
+        @extend .description;
         //text-align: center;
         display: flex;
         justify-content: center;
@@ -306,34 +341,8 @@ body {
         }
     }
 
-    textarea {
-        width: 100%;
-        height: 200px;
-        border: none;
-        outline: none;
-        resize: none;
-    }
-
     .readMoreButton {
         margin: 5px 0px 0px 0px;
-    }
-
-    .icon {
-        width: 25px;
-        position: absolute;
-        cursor: pointer;
-    }
-
-    .editIcon {
-        @extend .icon;
-        top: 10px;
-        right: 10px;
-    }
-
-    .cancelIcon {
-        @extend .icon;
-        top: 10px;
-        right: 40px;
     }
 }
 
@@ -460,32 +469,48 @@ body {
     gap: 0px 20px;
 
     .bugMainSection {
-        @extend .card;
-        padding: 20px;
-        background: #ffffff;
-        border: 1px solid $google-border;
+
+        .bugMainSectionCard {
+            @extend .card;
+            padding: 20px;
+            background: #ffffff;
+            border: 1px solid $google-border;
+        }
     }
 
     .bugProperties {
+        @extend .descriptionWrapper;
         @extend .card;
         background: #ffffff;
         border: 1px solid $google-border;
         position: sticky;
         top: 20px;
-        padding: 10px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
 
         .property {
             display: flex;
+            flex-direction: row;
             gap: 1.5rem;
+            align-items: center;
+        }
+
+        >.property:first-of-type {
+            margin: 20px 0px 0px 0px;
         }
 
         .label {
             font-weight: 600;
+            width: 75%;
+        }
+
+        .value {
+            margin-left: auto;
         }
 
         .dates {
-            //border-top: 1px solid #000000;
-            //border-radius: 10px;
             padding: 5px 0px 0px 0px;
             margin: 5px 0px 0px 0px;
         }
