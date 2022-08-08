@@ -17,7 +17,7 @@ function Project({ project } : Props) {
     }
 
     const onClick = (e: MouseEvent<HTMLDivElement>) => {
-        if(e.target instanceof HTMLDivElement && e.target.className == "project")
+        if(!(e.target instanceof HTMLImageElement) /*&& e.target.className != "deleteIcon filter-red"*/)
             navigate(`/project/${project.id}`);
     }
 

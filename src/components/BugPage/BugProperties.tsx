@@ -11,7 +11,7 @@ interface Props {
 }
 
 function BugProperties({ bug }: Props) {
-    const [editing, setEditing] = useState<boolean>(true);
+    const [editing, setEditing] = useState<boolean>(false);
     const [status, setStatus] = useState<string>(bug != null ? bug.status : "")
     const [priority, setPriority] = useState<number>(bug != null ? bug.priority : 1)
     const [dueDate, setDueDate] = useState<Date | null>((bug != null && bug.due_date != null) ? bug.due_date : null)
@@ -95,7 +95,7 @@ function BugProperties({ bug }: Props) {
             </form>
             :
             <div className="bugProperties descriptionWrapper">
-                <img className="editIcon" onClick={() => setEditing(true)} src="assets/ok.svg" />
+                <img className="editIcon" onClick={() => setEditing(true)} src="assets/edit.svg" />
 
                 <div className="property">
                     <span className="label">Status :</span>

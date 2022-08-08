@@ -5,3 +5,4 @@ edit: https://iconscout.com/icon/edit-2653695 <a href="https://iconscout.com/ico
 more: <a href="https://iconscout.com/icons/more" target="_blank">More Icon</a> on <a href="https://iconscout.com">IconScout</a>
 add: <a href="https://iconscout.com/icons/add" target="_blank">Add Icon</a> on <a href="https://iconscout.com">IconScout</a>
 close: <a href="https://iconscout.com/icons/close" target="_blank">Close Icon</a> by <a href="https://iconscout.com/contributors/fluent" target="_blank">Microsoft</a>
+ok: <a href="https://iconscout.com/icons/done" target="_blank">Done Icon</a> on <a href="https://iconscout.com">IconScout</a>
