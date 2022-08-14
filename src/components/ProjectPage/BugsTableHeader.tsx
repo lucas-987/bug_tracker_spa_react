@@ -6,18 +6,26 @@ interface Props {
     addNewBug: () => void;
 }
 
+const TITLE = "Title"
+const PRIORITY = "Priority"
+const START_DATE = "Start date"
+const DUE_DATE = "Due date"
+const END_DATE = "End date"
+const OPEN = "open"
+const CLOSE = "close"
+
 function BugsTableHeader({ addNewBug, filter, changeFilter }: Props) {
     return (
         <header className="bugsTableHeader">
-            <span className="headerTitle">Title</span>
-            <span className="headerPriority">priority</span>
-            <span className="headerStartDate">start date</span>
-            <span className="headerDueDate">due date</span>
+            <span className="headerTitle">{TITLE}</span>
+            <span className="headerPriority">{PRIORITY}</span>
+            <span className="headerStartDate">{START_DATE}</span>
+            <span className="headerDueDate">{DUE_DATE}</span>
             <span className="headerActions">
                 <a className={filter == "open" ? "filterSelected" : "filter"}
-                    onClick={() => changeFilter("open")}>open</a>
+                    onClick={() => changeFilter("open")}>{OPEN}</a>
                 <a className={filter == "close" ? "filterSelected" : "filter"}
-                    onClick={() => changeFilter("close")}>close</a>
+                    onClick={() => changeFilter("close")}>{CLOSE}</a>
                 <img className="addIcon" draggable="false" src="assets/plus.svg"
                     onClick={addNewBug} />
             </span>

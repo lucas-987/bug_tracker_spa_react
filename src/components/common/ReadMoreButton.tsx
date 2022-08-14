@@ -4,11 +4,14 @@ interface Props {
     onClick: () => void;
 }
 
+const EXPANDED_TEXT = "READ LESS ..."
+const REDUCED_TEXT = "READ MORE ..."
+
 function ReadMoreButton({ isVisible, isExpanded, onClick }: Props) {
 
     if(!isVisible) return (<></>);
 
-    let text = isExpanded ? "READ LESS ..." : "READ MORE ..."
+    let text = isExpanded ? EXPANDED_TEXT : REDUCED_TEXT
 
     return (
         <div className="readMoreButton" onClick={() => onClick()}>{text}</div>

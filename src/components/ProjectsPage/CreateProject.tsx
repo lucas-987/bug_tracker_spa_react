@@ -3,6 +3,12 @@ import { useAppDispatch } from "../../app/hooks";
 import { createProject } from "../../features/Project/projectSlice";
 import Project from "../../interfaces/Project";
 
+const TITLE_LABEL = "Title"
+const TITLE_PLACEHOLDER = TITLE_LABEL
+const DESCRIPTION_LABEL = "Description"
+const DESCRIPTION_PLACEHOLDER = "Description (optionnal) ..."
+const CREATE_BUTTON_TEXT = "Create"
+
 function CreateProject() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [title, setTitle] = useState<string>("");
@@ -40,18 +46,18 @@ function CreateProject() {
             <div className="projectAddForm">
                 <form className="formFullWidth" onSubmit={createNewProject}>
                     <div className="formGroup">
-                        <label htmlFor="title">Title</label>
-                        <input name="title" type="text" value={title} placeholder="Title"
+                        <label htmlFor="title">{TITLE_LABEL}</label>
+                        <input name="title" type="text" value={title} placeholder={TITLE_PLACEHOLDER}
                             onChange={(e) => setTitle(e.target.value)} />
                     </div>
                         
                     <div className="formGroup">
-                        <label htmlFor="description">Description</label>
-                        <textarea name="description" value={description} placeholder="Description (optionnal) ..."
+                        <label htmlFor="description">{DESCRIPTION_LABEL}</label>
+                        <textarea name="description" value={description} placeholder={DESCRIPTION_PLACEHOLDER}
                             rows={10} onChange={(e) => setDescription(e.target.value)} />
                     </div>
                         
-                    <button>Create</button>
+                    <button>{CREATE_BUTTON_TEXT}</button>
                 </form>
             </div>
         );

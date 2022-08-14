@@ -9,6 +9,17 @@ interface Props {
     projectId: number;
 }
 
+const FORM_TITLE = "Create a new bug"
+const TITLE_LABEL = "Title"
+const TITLE_PLACEHOLDER = TITLE_LABEL
+const DESCRIPTION_LABEL = "Description"
+const DESCRIPTION_PLACEHOLDER = "Description (optionnal) ..."
+const CREATE_BUTTON_TEXT = "Create"
+const PRIORITY_LABEL = "Priority"
+const PRIORITY_PLACEHOLDER = PRIORITY_LABEL
+const DUE_DATE_LABEL = "Due date (optionnal)"
+const DUE_DATE_PLACEHOLDER = "Due date"
+
 function AddBugAlert({ onClick, onClose, projectId }: Props) {
     const [title, setTitle] = useState<string>('')
     const [description, setDescription] = useState<string>('')
@@ -59,34 +70,34 @@ function AddBugAlert({ onClick, onClose, projectId }: Props) {
     return (
         <div className="backgroundBlur" onClick={onBackgroundClicked}>
             <form className="newProjectAlert" onSubmit={createNewBug}>
-                <h1>Create a new bug</h1>
+                <h1>{FORM_TITLE}</h1>
                 <div className="form">
                     <div className="formGroup">
-                        <label htmlFor="title">Title</label>
-                        <input name="title" type="text" placeholder="Title"
+                        <label htmlFor="title">{TITLE_LABEL}</label>
+                        <input name="title" type="text" placeholder={TITLE_PLACEHOLDER}
                             value={title} onChange={(e) => setTitle(e.target.value)} />
                     </div>
                     
                     <div className="formGroup">
-                        <label htmlFor="description">Description</label>
-                        <textarea name="description" placeholder="Description (optionnal) ..."
+                        <label htmlFor="description">{DESCRIPTION_LABEL}</label>
+                        <textarea name="description" placeholder={DESCRIPTION_PLACEHOLDER}
                             rows={10} 
                             value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                     </div>
 
                     <div className="formGroup">
-                        <label htmlFor="priority">Priority</label>
-                        <input name="priority" type="number" placeholder="Priority" min="0"
+                        <label htmlFor="priority">{PRIORITY_LABEL}</label>
+                        <input name="priority" type="number" placeholder={PRIORITY_PLACEHOLDER} min="0"
                             value={priority} onChange={(e) => setPriority(Number(e.target.value))}/>
                     </div>
 
                     <div className="formGroup">
-                        <label htmlFor="dueDate">Due date (optionnal)</label>
-                        <input name="dueDate" type="date" placeholder="Due date"
+                        <label htmlFor="dueDate">{DUE_DATE_LABEL}</label>
+                        <input name="dueDate" type="date" placeholder={DUE_DATE_PLACEHOLDER}
                             onChange={(e) => setDate(e)}/>
                     </div>
                         
-                    <button>Create</button>
+                    <button>{CREATE_BUTTON_TEXT}</button>
                 </div>
             </form>
         </div>

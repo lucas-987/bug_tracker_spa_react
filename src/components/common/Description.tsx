@@ -28,6 +28,7 @@ function Description(
     const [editing, setEditing] = useState<boolean>(false);
     const [editedDescription, setEditedDescription] = useState<string>("");
 
+    // check if a readmore button is needed
     useLayoutEffect(() => {
         const { current } = descriptionRef
 
@@ -38,10 +39,6 @@ function Description(
 
     const readMoreClicked = () => {
         setIsOpen(!isOpen)
-    }
-
-    const openEditing = () => {
-        setEditing(true)
     }
 
     const descriptionEdited = () => {
@@ -65,7 +62,7 @@ function Description(
                 </>
                 :
                 <>
-                    <img className={editIconClassName} onClick={() => openEditing()} src="assets/edit.svg" />
+                    <img className={editIconClassName} onClick={() => setEditing(true)} src="assets/edit.svg" />
                     <div ref={descriptionRef} className={descriptionClassName + (isOpen ? " open" : "")}>
                         {text}
                     </div>

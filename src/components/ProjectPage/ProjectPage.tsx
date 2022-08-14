@@ -23,9 +23,9 @@ function ProjectPage() {
     const project = useAppSelector(selectCurrentProject);
 
     const onTitleEdited = (newTitle: string) => {
-        if(newTitle) {
+        if(newTitle && project != null) {
             let newProject: Project = {
-                id: project!.id,
+                id: project.id,
                 title: newTitle
             }
 
@@ -34,13 +34,15 @@ function ProjectPage() {
     }
 
     const onDescriptionEdited = (newDescription: string) => {
-        let newProject: Project = {
-            id: project!.id,
-            title: project!.title,
-            description: newDescription
-        };
-
-        dispatch(updateProject(newProject))
+        if(project != null) {
+            let newProject: Project = {
+                id: project.id,
+                title: project.title,
+                description: newDescription
+            };
+    
+            dispatch(updateProject(newProject))
+        }
     }
 
     return (

@@ -5,6 +5,13 @@ import Bug from "../../interfaces/Bug";
 
 const CLOSE_ISSUE_BUTTON_TEXT = "Close issue"
 const OPEN_ISSUE_BUTTON_TEXT = "Open issue"
+const STATUS_LABEL = "Status :"
+const OPEN = "open"
+const CLOSE = "close"
+const PRIORITY_LABEL = "Priority :"
+const START_DATE_LABEL = "Start date :"
+const END_DATE_LABEL = "End date :"
+const DUE_DATE_LABEL = "Due date :"
 
 interface Props {
     bug: Bug | null;
@@ -58,36 +65,36 @@ function BugProperties({ bug }: Props) {
                 <img className="cancelIcon" onClick={() => setEditing(false)} src="assets/close.svg" />
                 
                 <div className="property formGroup">
-                    <span className="label">Status :</span>
+                    <span className="label">{STATUS_LABEL}</span>
                     <select className="value" value={status}
                         onChange={(e) => setStatus(e.target.value)}>
-                        <option value="open">open</option>
-                        <option value="close">close</option>
+                        <option value="open">{OPEN}</option>
+                        <option value="close">{CLOSE}</option>
                     </select>
                 </div>
 
                 <div className="property formGroup">
-                    <span className="label">Priority :</span>
+                    <span className="label">{PRIORITY_LABEL}</span>
                     <input className="value" type="number" min={0}
                         value={priority} onChange={(e) => setPriority(Number(e.target.value))} />
                 </div>
                         
                 <div className="dates">
                     <div className="property formGroup">
-                        <span className="label">Start date :</span>
+                        <span className="label">{START_DATE_LABEL}</span>
                         <input disabled className="value" type="date"
                             value={(bug != null && bug.start_date != null) ? new Date(bug.start_date).toISOString().split("T")[0] : ""} />
                     </div>
 
                     <div className="property formGroup">
-                        <span className="label">Due date :</span>
+                        <span className="label">{DUE_DATE_LABEL}</span>
                         <input className="value" type="date"
                             value={(dueDate != null) ? new Date(dueDate).toISOString().split("T")[0] : ""}
                             onChange={(e) => setDate(e)} />
                     </div>
 
                     <div className="property formGroup">
-                        <span className="label">End date :</span>
+                        <span className="label">{END_DATE_LABEL}</span>
                         <input disabled className="value" type="date"
                             value={(bug != null && bug.end_date != null) ? new Date(bug.end_date).toISOString().split("T")[0] : ""} />
                     </div>
@@ -98,28 +105,28 @@ function BugProperties({ bug }: Props) {
                 <img className="editIcon" onClick={() => setEditing(true)} src="assets/edit.svg" />
 
                 <div className="property">
-                    <span className="label">Status :</span>
+                    <span className="label">{STATUS_LABEL}</span>
                     <span className="value">{bug?.status}</span>
                 </div>
 
                 <div className="property">
-                    <span className="label">Priority :</span>
+                    <span className="label">{PRIORITY_LABEL}</span>
                     <span className="value">{bug?.priority}</span>
                 </div>
                     
                 <div className="dates">
                     <div className="property">
-                        <span className="label">Start date :</span>
+                        <span className="label">{START_DATE_LABEL}</span>
                         <span className="value">{bug != null && (bug.start_date == null ? "" : new Date(bug.start_date).toLocaleDateString())}</span>
                     </div>
 
                     <div className="property">
-                        <span className="label">Due date :</span>
+                        <span className="label">{DUE_DATE_LABEL}</span>
                         <span className="value">{bug != null && (bug.due_date == null ? "" : new Date(bug.due_date).toLocaleDateString())}</span>
                     </div>
 
                     <div className="property">
-                        <span className="label">End date :</span>
+                        <span className="label">{END_DATE_LABEL}</span>
                         <span className="value">{bug != null && (bug.end_date == null ? "" : new Date(bug.end_date).toLocaleDateString())}</span>
                     </div>
                 </div>

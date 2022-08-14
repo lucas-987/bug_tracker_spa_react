@@ -7,7 +7,9 @@ interface Props {
     onEdited?: (newTitle:string) => void;
 }
 
-function Header({ title = "Bug Tracker", editable = false, onEdited }: Props) {
+const DEFAULT_TITLE = "Bug Tracker"
+
+function Header({ title = DEFAULT_TITLE, editable = false, onEdited }: Props) {
     const [editing, setEditing] = useState<boolean>(false)
     const [newTitle, setNewTitle] = useState<string>(title);
 
