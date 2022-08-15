@@ -1,5 +1,4 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import projectReducer, { ProjectState } from "../features/Project/projectSlice";
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
@@ -8,11 +7,9 @@ const persistConfig = {
   storage,
 }
 
-const persistedProjectReducer = persistReducer(persistConfig, projectReducer)
-
 export const store = configureStore({
   reducer: {
-    project: persistedProjectReducer
+    
   },
   devTools: true
 });

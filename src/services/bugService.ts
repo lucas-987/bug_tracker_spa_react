@@ -1,5 +1,4 @@
-import Project from "../../interfaces/Project"
-import Bug from "../../interfaces/Bug"
+import Bug from "../interfaces/Bug"
 import { Result } from "./projectService"
 
 const API_URL = "http://localhost:3000/api/";

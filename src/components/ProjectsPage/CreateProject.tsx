@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useAppDispatch } from "../../app/hooks";
-import { createProject } from "../../features/Project/projectSlice";
 import Project from "../../interfaces/Project";
 
 const TITLE_LABEL = "Title"
@@ -9,12 +7,14 @@ const DESCRIPTION_LABEL = "Description"
 const DESCRIPTION_PLACEHOLDER = "Description (optionnal) ..."
 const CREATE_BUTTON_TEXT = "Create"
 
-function CreateProject() {
+interface Props {
+    onProjectCreated: (newProject: Project) => void
+}
+
+function CreateProject({ onProjectCreated }: Props) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
-
-    const dispatch = useAppDispatch();
 
     const createNewProject = (e: React.SyntheticEvent) => {
         e.preventDefault();
@@ -33,8 +33,8 @@ function CreateProject() {
             title,
             description: description === "" ? null : description
         };
-
-        dispatch(createProject(newProject));
+        
+        onProjectCreated(newProject);
 
         setTitle("");
         setDescription("");

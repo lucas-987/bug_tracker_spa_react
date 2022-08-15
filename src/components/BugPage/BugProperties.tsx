@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { useAppDispatch } from "../../app/hooks";
-import { updateBug } from "../../features/Project/projectSlice";
 import Bug from "../../interfaces/Bug";
 
 const CLOSE_ISSUE_BUTTON_TEXT = "Close issue"
@@ -14,16 +12,15 @@ const END_DATE_LABEL = "End date :"
 const DUE_DATE_LABEL = "Due date :"
 
 interface Props {
-    bug: Bug | null;
+    bug: Bug | null | undefined;
+    onBugUpdated: (updatedBug: Bug) => void
 }
 
-function BugProperties({ bug }: Props) {
+function BugProperties({ bug, onBugUpdated }: Props) {
     const [editing, setEditing] = useState<boolean>(false);
     const [status, setStatus] = useState<string>(bug != null ? bug.status : "")
     const [priority, setPriority] = useState<number>(bug != null ? bug.priority : 1)
     const [dueDate, setDueDate] = useState<Date | null>((bug != null && bug.due_date != null) ? bug.due_date : null)
-
-    const dispatch = useAppDispatch()
 
     const setDate = (e: React.ChangeEvent<HTMLInputElement>) => {
         if(e.target.value === "") setDueDate(null)
@@ -39,7 +36,7 @@ function BugProperties({ bug }: Props) {
                 priority: priority
             }
             if(dueDate != null) newBug.due_date = dueDate
-            dispatch(updateBug(newBug))
+            onBugUpdated(newBug)
             setEditing(false)
         }
     }
@@ -52,7 +49,7 @@ function BugProperties({ bug }: Props) {
                 status: bug.status === "open" ? "close" : "open",
                 priority: -1
             }
-            dispatch(updateBug(newBug))
+            onBugUpdated(newBug)
         }
     }
 

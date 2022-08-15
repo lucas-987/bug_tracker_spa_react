@@ -1,20 +1,14 @@
-import React, { MouseEvent } from "react";
+import { MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../app/hooks";
-import { deleteProject } from "../../features/Project/projectSlice";
 import ProjectInterface from "../../interfaces/Project";
 
 interface Props {
     project: ProjectInterface;
+    onDelete: (id: number) => void;
 };
 
-function Project({ project } : Props) {
+function Project({ project, onDelete } : Props) {
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
-
-    const onDelete = (e: React.SyntheticEvent) => {
-        dispatch(deleteProject(project.id))
-    }
 
     const onClick = (e: MouseEvent<HTMLDivElement>) => {
         if(!(e.target instanceof HTMLImageElement) /*&& e.target.className != "deleteIcon filter-red"*/)
@@ -24,7 +18,7 @@ function Project({ project } : Props) {
     return (
         <div className="project" onClick={onClick}>
             <img className="deleteIcon filter-red" draggable="false" src="assets/delete-trash.svg"
-                onClick={onDelete} />
+                onClick={() => onDelete(project.id)} />
             <h1>{project.title}</h1>
         </div>
     );

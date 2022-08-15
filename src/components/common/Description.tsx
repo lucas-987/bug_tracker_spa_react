@@ -35,7 +35,7 @@ function Description(
         if(current) {
             setShowReadMoreButton(current.scrollHeight > current.clientHeight)
         }
-    }, [])
+    }, [text])
 
     const readMoreClicked = () => {
         setIsOpen(!isOpen)

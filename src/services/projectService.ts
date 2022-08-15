@@ -1,4 +1,4 @@
-import Project from "../../interfaces/Project";
+import Project from "../interfaces/Project";
 
 const API_URL = "http://localhost:3000/api/project/";
 
@@ -38,6 +38,49 @@ const getAll = async () => {
             }
             break;      
     } 
+
+    return result;
+}
+
+const getById = async (projectId: number) => {
+    const response = await fetch(API_URL + `${projectId}`, {
+        headers
+    });
+
+    let result: Result;
+
+    switch(response.status) {
+        case 200:
+            result = {
+                success: true,
+                data: await response.json()
+            };
+            break;
+        case 400:
+            result = {
+                success: false,
+                message: (await response.json()).message
+            };
+            break;
+        case 404:
+            result = {
+                success: false,
+                message: "Project not found"
+            };
+            break;
+        case 500:
+            result = {
+                success: false,
+                message: "Internal server error"
+            };
+            break;
+        default:
+            result = {
+                success: false,
+                message: "Unknown error"
+            }
+            break;
+    }
 
     return result;
 }
@@ -183,6 +226,7 @@ const update = async (project: Project) => {
 
 const projectService = {
     getAll,
+    getById,
     deleteById,
     create,
     update

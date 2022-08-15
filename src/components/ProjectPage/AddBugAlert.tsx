@@ -1,13 +1,5 @@
 import React, { useState } from "react";
 import Bug from "../../interfaces/Bug";
-import { useAppDispatch } from "../../app/hooks";
-import { BugAsyncThunkParams, createBug } from "../../features/Project/projectSlice";
-
-interface Props {
-    onClick?: () => void;
-    onClose: () => void;
-    projectId: number;
-}
 
 const FORM_TITLE = "Create a new bug"
 const TITLE_LABEL = "Title"
@@ -20,13 +12,18 @@ const PRIORITY_PLACEHOLDER = PRIORITY_LABEL
 const DUE_DATE_LABEL = "Due date (optionnal)"
 const DUE_DATE_PLACEHOLDER = "Due date"
 
-function AddBugAlert({ onClick, onClose, projectId }: Props) {
+interface Props {
+    onClick?: () => void;
+    onClose: () => void;
+    projectId: number;
+    onBugCreated: (newBug: Bug) => void
+}
+
+function AddBugAlert({ onClick, onClose, onBugCreated, projectId }: Props) {
     const [title, setTitle] = useState<string>('')
     const [description, setDescription] = useState<string>('')
     const [priority, setPriority] = useState<number>(1)
     const [dueDate, setDueDate] = useState<Date>()
-
-    const dispatch = useAppDispatch()
 
     const createNewBug = (e: React.SyntheticEvent) => {
         e.preventDefault()
@@ -41,14 +38,9 @@ function AddBugAlert({ onClick, onClose, projectId }: Props) {
             priority,
             status: "open"
         }
-
         if(dueDate != undefined) newBug.due_date = dueDate
-
-        const dispatchParams: BugAsyncThunkParams = {
-            bug: newBug,
-            projectId: projectId
-        }
-        dispatch(createBug(dispatchParams));
+        
+        onBugCreated(newBug)
 
         setTitle("")
         setDescription("")
