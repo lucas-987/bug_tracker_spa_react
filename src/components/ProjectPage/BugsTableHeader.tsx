@@ -16,12 +16,12 @@ const CLOSE = "close"
 
 function BugsTableHeader({ addNewBug, filter, changeFilter }: Props) {
     return (
-        <header className="bugsTableHeader">
-            <span className="headerTitle">{TITLE}</span>
-            <span className="headerPriority">{PRIORITY}</span>
-            <span className="headerStartDate">{START_DATE}</span>
-            <span className="headerDueDate">{DUE_DATE}</span>
-            <span className="headerActions">
+        <header className="bugs-table__header">
+            <span className="bugs-table__header__title">{TITLE}</span>
+            <span className="bugs-table__header__priority">{PRIORITY}</span>
+            <span className="bugs-table__header__start-date">{START_DATE}</span>
+            <span className="bugs-table__header__due-date">{DUE_DATE}</span>
+            <span className="bugs-table__header__actions">
                 <a className={filter == "open" ? "filterSelected" : "filter"}
                     onClick={() => changeFilter("open")}>{OPEN}</a>
                 <a className={filter == "close" ? "filterSelected" : "filter"}

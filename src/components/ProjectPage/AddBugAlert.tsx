@@ -55,43 +55,43 @@ function AddBugAlert({ onClick, onClose, onBugCreated, projectId }: Props) {
     }
 
     const onBackgroundClicked = (e: React.MouseEvent<HTMLDivElement>) => {
-        if(e.target instanceof HTMLDivElement && e.target.className == "backgroundBlur")
+        if(e.target instanceof HTMLDivElement && e.target.className == "background-blur")
             onClose()
     }
 
     return (
-        <div className="backgroundBlur" onClick={onBackgroundClicked}>
-            <form className="newProjectAlert" onSubmit={createNewBug}>
+        <div className="background-blur" onClick={onBackgroundClicked}>
+            <div className="alert">
                 <h1>{FORM_TITLE}</h1>
-                <div className="form">
-                    <div className="formGroup">
+                <form className="form" onSubmit={createNewBug}>
+                    <div className="form-group">
                         <label htmlFor="title">{TITLE_LABEL}</label>
                         <input name="title" type="text" placeholder={TITLE_PLACEHOLDER}
                             value={title} onChange={(e) => setTitle(e.target.value)} />
                     </div>
                     
-                    <div className="formGroup">
+                    <div className="form-group">
                         <label htmlFor="description">{DESCRIPTION_LABEL}</label>
                         <textarea name="description" placeholder={DESCRIPTION_PLACEHOLDER}
                             rows={10} 
                             value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                     </div>
 
-                    <div className="formGroup">
+                    <div className="form-group">
                         <label htmlFor="priority">{PRIORITY_LABEL}</label>
                         <input name="priority" type="number" placeholder={PRIORITY_PLACEHOLDER} min="0"
                             value={priority} onChange={(e) => setPriority(Number(e.target.value))}/>
                     </div>
 
-                    <div className="formGroup">
+                    <div className="form-group">
                         <label htmlFor="dueDate">{DUE_DATE_LABEL}</label>
                         <input name="dueDate" type="date" placeholder={DUE_DATE_PLACEHOLDER}
                             onChange={(e) => setDate(e)}/>
                     </div>
                         
                     <button>{CREATE_BUTTON_TEXT}</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     );
 }

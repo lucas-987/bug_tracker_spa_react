@@ -1,0 +1,40 @@
+$shadow: #AAB977;
+$pale-spring-bud: #ccd5aeff;
+$pale-spring-bud-2: #e9edc9ff;
+$cornsilk: #fefae0ff;
+$papaya-whip: #faedcdff;
+$papaya-whip-border: #EEC356;
+$fawn: #d4a373ff;
+$fawn-border: #C98C4F;
+$google-border: #dadce0;
+$google-selected-input: #1a73e8;
+$youtube-read-more: #6c6c6c;
+
+$top-bar-background: $fawn;
+$top-bar-border: $fawn-border;
+$top-bar-gradient: #B27537;
+
+$blur-backround: rgba($color: #000000, $alpha: 0.5);
+
+$project-background: $papaya-whip;
+$project-gradient: #F1CE73;
+$project-border: $papaya-whip-border;
+
+$default-background: $cornsilk;
+
+$font-stack: (
+    "Open Sans",
+    sans-serif
+);
+
+.filter-red {
+    //https://codepen.io/sosuke/pen/Pjoqqp
+    //https://stackoverflow.com/a/53336754
+    //filter: invert(28%) sepia(81%) saturate(6415%) hue-rotate(353deg) brightness(93%) contrast(128%);
+    filter: invert(11%) sepia(81%) saturate(7012%) hue-rotate(0deg) brightness(90%) contrast(122%);
+}
+
+.filter-green {
+    //#00B600
+    filter: invert(39%) sepia(100%) saturate(1467%) hue-rotate(90deg) brightness(100%) contrast(109%);
+}

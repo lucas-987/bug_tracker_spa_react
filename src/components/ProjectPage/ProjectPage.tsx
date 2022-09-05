@@ -92,7 +92,7 @@ function ProjectPage() {
                  onClick={() => setShowAlert(false)} onBugCreated={onBugCreated} />}
 
             <Description text={project?.description}
-                wrapperClassName="projectDescriptionWrapper" descriptionClassName="projectDescription"
+                wrapperClassName="project-description-wrapper" descriptionClassName="project-description"
                 descriptionEditedCallback={onDescriptionEdited} />
 
             <BugsTable bugs={project?.bugs != null ? project.bugs : []}

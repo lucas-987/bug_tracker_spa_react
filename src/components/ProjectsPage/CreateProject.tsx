@@ -43,15 +43,15 @@ function CreateProject({ onProjectCreated }: Props) {
 
     if(isOpen) {
         return (
-            <div className="projectAddForm">
-                <form className="formFullWidth" onSubmit={createNewProject}>
-                    <div className="formGroup">
+            <div className="project-add-form">
+                <form className="form--full-width" onSubmit={createNewProject}>
+                    <div className="form-group">
                         <label htmlFor="title">{TITLE_LABEL}</label>
                         <input name="title" type="text" value={title} placeholder={TITLE_PLACEHOLDER}
                             onChange={(e) => setTitle(e.target.value)} />
                     </div>
                         
-                    <div className="formGroup">
+                    <div className="form-group">
                         <label htmlFor="description">{DESCRIPTION_LABEL}</label>
                         <textarea name="description" value={description} placeholder={DESCRIPTION_PLACEHOLDER}
                             rows={10} onChange={(e) => setDescription(e.target.value)} />
@@ -65,7 +65,7 @@ function CreateProject({ onProjectCreated }: Props) {
     else {
         return (
             <div className="project" onClick={() => setIsOpen(true)}>
-                <img className="projectAddIcon"
+                <img className="project__add-icon"
                     src="assets/plus.svg" draggable="false" />
             </div>
         );

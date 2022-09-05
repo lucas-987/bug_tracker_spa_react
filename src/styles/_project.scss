@@ -1,0 +1,116 @@
+.project-description-wrapper {
+    @extend .description-wrapper;
+    margin: 1.5rem;
+    padding: 1rem 1rem 1.5rem 1rem;
+    background: #ffffff;
+    border: 1px solid $google-border;
+
+    .project-description {
+        @extend .description;
+        display: flex;
+        justify-content: center;
+        max-height: 25vh;
+        overflow: hidden;
+
+        &.open {
+            max-height: none;
+        }
+    }
+
+    .read-more-button {
+        margin: 0.5rem 0 0 0;
+    }
+}
+
+.read-more-button {
+    color: $youtube-read-more;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.bugs-table {
+    margin: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 5px $shadow;
+    border: none;
+    position: relative;
+
+    &__header {
+        @extend .row;
+        padding: 1rem 1rem;
+        border-bottom: 3px solid $google-border;
+        font-weight: 500;
+        font-size: 1.15rem;
+        background-color: $project-gradient;
+        position: sticky;
+        top: 0;
+
+        &__title {
+            flex: 1 0 30%;
+        }
+        &__priority {
+            flex: 0 0 10%;
+        }
+        &__start-date {
+            flex: 1 0 10%;
+        }
+        &__due-date {
+            flex: 1 0 10%;
+        }
+        &__actions {
+            display: flex;
+            justify-content: flex-end;
+            flex: 0 0 10%;
+            align-self: flex-end;
+            gap: 5px;
+        
+            .addIcon {
+                width: 1.5rem;
+                cursor: pointer;
+            }
+        
+            .filter {
+                cursor: pointer;
+            }
+            .filterSelected {
+                @extend .filter;
+                font-weight: bold;
+            }
+        }
+    }
+
+    &__row {
+        @extend .row;
+        background: #ffffff;
+        padding: 1.2rem 1rem;
+
+        &__title {
+            flex: 1 0 30%;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        &__title:hover {
+            color: $google-selected-input;
+        }
+        &__priority {
+            flex: 0 0 10%;
+        }
+        &__start-date {
+            flex: 1 0 10%;
+        }
+        &__due-date {
+            flex: 1 0 10%;
+        }
+        &__actions {
+            display: flex;
+            justify-content: flex-end;
+            flex: 0 0 10%;
+            align-self: flex-end;
+            gap: 5px;
+        }
+    }
+    &__row:last-of-type {
+        border-bottom: none;
+    }
+}

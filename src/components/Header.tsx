@@ -23,13 +23,13 @@ function Header({ title = DEFAULT_TITLE, editable = false, onEdited }: Props) {
     }
     
     return (
-        <header className="topBar">
-            <span className="titleWrapper">
+        <header className="top-bar">
+            <span className="top-bar__title-wrapper">
                 {editing ?
                     <>
                         <input type="text" value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
-                        <img src="assets/ok.svg" onClick={() => editingValidated()} />
                         <img src="assets/close.svg" onClick={() => toggleEditing()} />
+                        <img src="assets/ok.svg" onClick={() => editingValidated()} />
                     </>
                 :
                     <>

@@ -14,9 +14,9 @@ function Description(
     { 
         text, 
         descriptionEditedCallback,
-        wrapperClassName = "descriptionWrapper",
-        editIconClassName = "editIcon",
-        cancelIconClassName = "cancelIcon",
+        wrapperClassName = "description-wrapper",
+        editIconClassName = "edit-icon",
+        cancelIconClassName = "cancel-icon",
         descriptionClassName = "description"
 
     }: Props) 

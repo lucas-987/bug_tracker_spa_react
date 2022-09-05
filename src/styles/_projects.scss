@@ -1,0 +1,91 @@
+.search-bar-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar {
+    padding: 1rem;
+    background-color: #fff;
+    border: 1px solid $google-border;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px $shadow;
+    margin: 20px 0 0 0;
+    display: flex;
+
+    .search-input {
+        border: none;
+        outline: none;
+        width: 100%;
+
+        &:focus {
+            color: $google-selected-input;
+        }
+    }
+
+    img {
+        width: 20px;
+        cursor: pointer;
+    }
+}
+
+.grid {
+    margin: 2rem 0rem 0rem 0rem;
+    padding: 0rem 1.2rem 0rem 1.2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2rem;
+}
+
+.project {
+    @extend .card;
+
+    position: relative;
+    align-self: center;
+    background-color: $project-background;
+    border: 1px solid $project-border;
+    cursor: pointer;
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: calc(100vh/5);
+    //margin: 10px 0px 0px 0px;
+    padding: 1rem 1rem 1rem 1rem;
+
+    &:hover {
+        box-shadow: 4px 4px 10px $shadow;
+    }
+
+    h1 {
+        margin: 1.5rem 1.5rem 1.5rem 0; // to prevent text to overflow on delete-icon
+        font-weight: 500;
+        max-height: 100%;
+        overflow: hidden;
+    }
+    
+    .delete-icon {
+        width: 2rem;
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        cursor: pointer;
+    }
+
+    .project__add-icon {
+        width: 3.5rem;
+    }
+}
+
+.project-add-form {
+    @extend .project;
+    height: auto;
+    box-shadow: 4px 4px 10px $shadow;
+    cursor: auto;
+    grid-column: 2 / span 2;
+    width: 100%;
+}
+
+.project-add-form + .project {
+    grid-row: 1;
+}

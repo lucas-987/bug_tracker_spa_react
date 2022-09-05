@@ -57,11 +57,11 @@ function BugProperties({ bug, onBugUpdated }: Props) {
         <>
         {
             editing ?
-            <form className="bugProperties form descriptionWrapper" onSubmit={(e) => {e.preventDefault(); onChangesValidated()}}>
-                <img className="editIcon" onClick={() => onChangesValidated()} src="assets/ok.svg" />
-                <img className="cancelIcon" onClick={() => setEditing(false)} src="assets/close.svg" />
+            <form className="bug-properties form description-wrapper" onSubmit={(e) => {e.preventDefault(); onChangesValidated()}}>
+                <img className="edit-icon" onClick={() => onChangesValidated()} src="assets/ok.svg" />
+                <img className="cancel-icon" onClick={() => setEditing(false)} src="assets/close.svg" />
                 
-                <div className="property formGroup">
+                <div className="property form-group">
                     <span className="label">{STATUS_LABEL}</span>
                     <select className="value" value={status}
                         onChange={(e) => setStatus(e.target.value)}>
@@ -70,27 +70,27 @@ function BugProperties({ bug, onBugUpdated }: Props) {
                     </select>
                 </div>
 
-                <div className="property formGroup">
+                <div className="property form-group">
                     <span className="label">{PRIORITY_LABEL}</span>
                     <input className="value" type="number" min={0}
                         value={priority} onChange={(e) => setPriority(Number(e.target.value))} />
                 </div>
                         
                 <div className="dates">
-                    <div className="property formGroup">
+                    <div className="property form-group">
                         <span className="label">{START_DATE_LABEL}</span>
                         <input disabled className="value" type="date"
                             value={(bug != null && bug.start_date != null) ? new Date(bug.start_date).toISOString().split("T")[0] : ""} />
                     </div>
 
-                    <div className="property formGroup">
+                    <div className="property form-group">
                         <span className="label">{DUE_DATE_LABEL}</span>
                         <input className="value" type="date"
                             value={(dueDate != null) ? new Date(dueDate).toISOString().split("T")[0] : ""}
                             onChange={(e) => setDate(e)} />
                     </div>
 
-                    <div className="property formGroup">
+                    <div className="property form-group">
                         <span className="label">{END_DATE_LABEL}</span>
                         <input disabled className="value" type="date"
                             value={(bug != null && bug.end_date != null) ? new Date(bug.end_date).toISOString().split("T")[0] : ""} />
@@ -98,8 +98,8 @@ function BugProperties({ bug, onBugUpdated }: Props) {
                 </div>
             </form>
             :
-            <div className="bugProperties descriptionWrapper">
-                <img className="editIcon" onClick={() => setEditing(true)} src="assets/edit.svg" />
+            <div className="bug-properties description-wrapper">
+                <img className="edit-icon" onClick={() => setEditing(true)} src="assets/edit.svg" />
 
                 <div className="property">
                     <span className="label">{STATUS_LABEL}</span>

@@ -27,7 +27,7 @@ function BugsTable({ bugs, addNewBug }: Props) {
     }
 
     return (
-        <div className="bugsTable">
+        <div className="bugs-table">
             <BugsTableHeader addNewBug={addNewBug} filter={filter} changeFilter={(newFilter) => setFilter(newFilter)} />
 
             {bugs.filter(filterBugs).map((bug, i) => 

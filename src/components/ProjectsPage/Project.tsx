@@ -17,7 +17,7 @@ function Project({ project, onDelete } : Props) {
 
     return (
         <div className="project" onClick={onClick}>
-            <img className="deleteIcon filter-red" draggable="false" src="assets/delete-trash.svg"
+            <img className="delete-icon filter-red" draggable="false" src="assets/delete-trash.svg"
                 onClick={() => onDelete(project.id)} />
             <h1>{project.title}</h1>
         </div>

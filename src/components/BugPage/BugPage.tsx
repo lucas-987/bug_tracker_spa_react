@@ -73,10 +73,10 @@ function BugPage() {
         <div>
             <Header title={bug?.title} editable={true} onEdited={onTitleEdited} />
 
-            <div className="bugPageWrapper">
-                <div className="bugMainSection">
+            <div className="bug-page-wrapper">
+                <div className="bug-main-section">
                     <Description text={bug != null ? bug.description : ""}
-                        wrapperClassName="bugMainSectionCard descriptionWrapper"
+                        wrapperClassName="bug-main-section__card description-wrapper"
                         descriptionEditedCallback={onDescriptionEdited} />
                 </div>
             

@@ -14,7 +14,7 @@ function ReadMoreButton({ isVisible, isExpanded, onClick }: Props) {
     let text = isExpanded ? EXPANDED_TEXT : REDUCED_TEXT
 
     return (
-        <div className="readMoreButton" onClick={() => onClick()}>{text}</div>
+        <div className="read-more-button" onClick={() => onClick()}>{text}</div>
     );
 }
 
