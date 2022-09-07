@@ -40,3 +40,78 @@
     }
 }
 
+.error-message-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 1.5rem;
+
+    .error-message {
+        @extend .card;
+
+        background: $error-message-background;
+        padding: 0.5rem 1rem;
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        position: relative;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        width: 100%;
+
+        .color-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0.5rem;
+
+            &.background-error {
+                background-color: $error-message-border-color-error;
+            }
+
+            &.background-success {
+                background-color: $error-message-border-color-success;
+            }
+
+            &.background-warning {
+                background-color: $error-message-border-color-warning;
+            }
+        }
+
+        img {
+            width: 1.5rem;
+        }
+
+        .error-message__main-icon {
+            align-self: center;
+            width: 2rem;
+        }
+    
+        .error-message__content {
+            display: flex;
+            flex-direction: column;
+    
+            .error-message__title {
+                font-size: 1.5rem;
+            }
+    
+            /*.error-message__text {
+    
+            }*/
+        }
+    
+        .error-message__close-icon-wrapper {
+            margin-left: auto;
+    
+            .error-message__close-icon {
+                width: 1rem;
+                align-self: flex-end;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

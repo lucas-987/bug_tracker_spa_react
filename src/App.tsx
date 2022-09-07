@@ -5,7 +5,6 @@ import {
 } from "react-router-dom";
 import BugPage from "./components/BugPage/BugPage";
 import ProjectPage from "./components/ProjectPage/ProjectPage";
-import Header from "./components/Header";
 import ProjectsPage from "./components/ProjectsPage/ProjectsPage";
 
 function App() {
