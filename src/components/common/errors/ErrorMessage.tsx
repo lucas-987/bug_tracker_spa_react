@@ -1,10 +1,9 @@
-import { Dictionary } from "@reduxjs/toolkit";
-
-type ErrorType = "ERROR" | "SUCCESS" | "WARNING"
+import { useAppDispatch } from "../../../app/hooks";
+import { removeError } from "../../../features/errorsSlice";
+import Error, { ErrorType } from "../../../interfaces/Error";
 
 interface Props {
-    message: string;
-    errorType: ErrorType;
+    error: Error
 }
 
 const errorTitles: Record<ErrorType, String> = {
@@ -13,30 +12,30 @@ const errorTitles: Record<ErrorType, String> = {
     "WARNING": "Warning",
 }
 
-const errorIcon: Record<ErrorType, String> = {
-    "ERROR": "close.svg",
-    "SUCCESS": "ok.svg",
-    "WARNING": "",
-}
-
 const errorColor: Record<ErrorType, String> = {
     "ERROR": "background-error",
     "SUCCESS": "background-success",
     "WARNING": "background-warning",
 }
 
-function ErrorMessage ({ message, errorType }: Props) {
+function ErrorMessage ({ error }: Props) {
+    const dispatch = useAppDispatch()
+    
+    const deleteIconClicked = () => {
+        dispatch(removeError(error.id))
+    }
+
     return (
         <div className="error-message-wrapper">
             <div className="error-message">
-                <div className={"color-border " + errorColor[errorType]}></div>
-                {/*<img className="error-message__main-icon" draggable="false" src={"assets/" + errorIcon[errorType]} />*/}
+                <div className={"color-border " + errorColor[error.type]}></div>
                 <div className="error-message__content">
-                    <span className="error-message__title">{errorTitles[errorType]}</span>
-                    <span className="error-message__text">{message}</span>
+                    <span className="error-message__title">{error.title != null ? error.title : errorTitles[error.type]}</span>
+                    <span className="error-message__text">{error.message}</span>
                 </div>
                 <div className="error-message__close-icon-wrapper">
-                    <img className="error-message__close-icon" draggable="false" src="assets/close.svg" />
+                    <img className="error-message__close-icon" draggable="false" src="assets/close.svg"
+                        onClick={() => deleteIconClicked()} />
                 </div>
             </div>
         </div>

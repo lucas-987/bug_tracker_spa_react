@@ -4,10 +4,18 @@ import Project from "./Project";
 import Header from "../Header";
 import ProjectInterface from "../../interfaces/Project";
 import projectService from "../../services/projectService";
+import Error from "../../interfaces/Error";
+import { useAppDispatch } from "../../app/hooks";
+import { addError } from "../../features/errorsSlice";
+import ErrorMessages from "../common/errors/ErrorMessages";
+
+const NETWORK_ERROR_TITLE = "Network Error"
+const NETWORK_ERROR_MESSAGE = "Unable to load data. Try to reload the page."
 
 function ProjectsPage() {
+    const dispatch = useAppDispatch()
     const [projects, setProjects] = useState<ProjectInterface[]>([])
-    
+
     useEffect(() => {
         fetchProjects()
     }, []);
@@ -16,6 +24,25 @@ function ProjectsPage() {
         projectService.getAll()
             .then(result => {
                 if(result.success) setProjects(result.data)
+                else {
+                    const err: Error = {
+                        id: "",
+                        type: "ERROR",
+                        message: result.message!
+                    }
+
+                    dispatch(addError(err))
+                }
+            })
+            .catch(err => {
+                const error: Error = {
+                    id: "",
+                    title: NETWORK_ERROR_TITLE,
+                    type: "ERROR",
+                    message: NETWORK_ERROR_MESSAGE
+                }
+
+                dispatch(addError(error))
             })
     }
 
@@ -38,12 +65,13 @@ function ProjectsPage() {
     return (
         <>
             <Header />
+            <ErrorMessages />
             <div className="grid">
 
                 <CreateProject onProjectCreated={onProjectCreated} />
 
                 {projects.map((project, i) => 
-                    <Project key={project.id} project={project} onDelete={onProjectDeleted} />
+                    <Project key={i} project={project} onDelete={onProjectDeleted} />
                 )}
 
             </div>

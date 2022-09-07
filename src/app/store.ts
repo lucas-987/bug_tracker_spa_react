@@ -1,6 +1,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+import errorsSlice from '../features/errorsSlice';
 
 const persistConfig = {
   key: 'root',
@@ -9,7 +10,7 @@ const persistConfig = {
 
 export const store = configureStore({
   reducer: {
-    
+    errors: errorsSlice
   },
   devTools: true
 });
