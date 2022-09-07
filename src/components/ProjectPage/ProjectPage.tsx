@@ -1,15 +1,30 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { useAppDispatch } from "../../app/hooks";
+import { addError } from "../../features/errorsSlice";
 import Bug from "../../interfaces/Bug";
 import Project from "../../interfaces/Project";
 import bugService from "../../services/bugService";
 import projectService from "../../services/projectService";
 import Description from "../common/Description";
+import ErrorMessages from "../common/errors/ErrorMessages";
 import Header from "../Header";
 import AddBugAlert from "./AddBugAlert";
 import BugsTable from "./BugsTable";
+import Error from "../../interfaces/Error";
+
+const NETWORK_ERROR_TITLE = "Network Error"
+const NETWORK_ERROR_MESSAGE = "Unable to load data. Please try to reload the page."
+const NETWORK_ERROR_MESSAGE_ACTION = "Unable to execute the action. Please try again."
+
+const REQUEST_ERROR_TITLE = "Request Error"
+const INTERNAL_ERROR_TITLE = "Internal Error"
+
+const SOMETHING_WENT_WRONG_MESSAGE = "Something went wrong. Please try again."
 
 function ProjectPage() {
+    const dispatch = useAppDispatch()
+
     const [showAlert, setShowAlert] = useState<boolean>(false);
     const [project, setProject] = useState<Project>();
 
@@ -23,7 +38,26 @@ function ProjectPage() {
     const getProject = (id: number) => {
         projectService.getById(id)
             .then(result => {
-                setProject(result.data)
+                if(result.success) setProject(result.data)
+                else {
+                    const err: Error = {
+                        id: "",
+                        type: "ERROR",
+                        message: result.message!
+                    }
+
+                    dispatch(addError(err))
+                }
+            })
+            .catch(err => {
+                const error: Error = {
+                    id: "",
+                    title: NETWORK_ERROR_TITLE,
+                    type: "ERROR",
+                    message: NETWORK_ERROR_MESSAGE
+                }
+
+                dispatch(addError(error))
             })
     }
 
@@ -41,7 +75,37 @@ function ProjectPage() {
 
                         setProject(updatedProject)
                     }
+                    else {
+                        const error: Error = {
+                            id: "",
+                            title: INTERNAL_ERROR_TITLE,
+                            type: "ERROR",
+                            message: SOMETHING_WENT_WRONG_MESSAGE
+                        }
+    
+                        dispatch(addError(error))
+                    }
                 }
+                else {
+                    const error: Error = {
+                        id: "",
+                        title: REQUEST_ERROR_TITLE,
+                        type: "ERROR",
+                        message: result.message!
+                    }
+
+                    dispatch(addError(error))
+                }
+            })
+            .catch(err => {
+                const error: Error = {
+                    id: "",
+                    title: NETWORK_ERROR_TITLE,
+                    type: "ERROR",
+                    message: NETWORK_ERROR_MESSAGE_ACTION
+                }
+
+                dispatch(addError(error))
             })
     }
 
@@ -56,7 +120,37 @@ function ProjectPage() {
                             
                             setProject(updatedProject)
                         }
+                        else {
+                            const error: Error = {
+                                id: "",
+                                title: INTERNAL_ERROR_TITLE,
+                                type: "ERROR",
+                                message: SOMETHING_WENT_WRONG_MESSAGE
+                            }
+        
+                            dispatch(addError(error))
+                        }
                     }
+                    else {
+                        const error: Error = {
+                            id: "",
+                            title: REQUEST_ERROR_TITLE,
+                            type: "ERROR",
+                            message: result.message!
+                        }
+    
+                        dispatch(addError(error))
+                    }
+                })
+                .catch(err => {
+                    const error: Error = {
+                        id: "",
+                        title: NETWORK_ERROR_TITLE,
+                        type: "ERROR",
+                        message: NETWORK_ERROR_MESSAGE_ACTION
+                    }
+    
+                    dispatch(addError(error))
                 })
         }
     }
@@ -87,6 +181,7 @@ function ProjectPage() {
     return (
         <div>
             <Header title={project?.title} editable={true} onEdited={onTitleEdited} />
+            <ErrorMessages />
 
             {showAlert && <AddBugAlert projectId={project?.id!} onClose={() => setShowAlert(false)}
                  onClick={() => setShowAlert(false)} onBugCreated={onBugCreated} />}

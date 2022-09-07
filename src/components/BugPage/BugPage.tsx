@@ -1,12 +1,27 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { useAppDispatch } from "../../app/hooks";
 import Bug from "../../interfaces/Bug";
 import bugService from "../../services/bugService";
 import Description from "../common/Description";
 import Header from "../Header";
 import BugProperties from "./BugProperties";
+import Error from "../../interfaces/Error";
+import { addError } from "../../features/errorsSlice";
+import ErrorMessages from "../common/errors/ErrorMessages";
+
+const NETWORK_ERROR_TITLE = "Network Error"
+const NETWORK_ERROR_MESSAGE = "Unable to load data. Please try to reload the page."
+const NETWORK_ERROR_MESSAGE_ACTION = "Unable to execute the action. Please try again."
+
+const REQUEST_ERROR_TITLE = "Request Error"
+const INTERNAL_ERROR_TITLE = "Internal Error"
+
+const SOMETHING_WENT_WRONG_MESSAGE = "Something went wrong. Please try again."
 
 function BugPage() {
+    const dispatch = useAppDispatch()
+
     let { id } = useParams();
     const [bug, setBug] = useState<Bug>()
 
@@ -19,6 +34,25 @@ function BugPage() {
         bugService.getById(id)
             .then(result => {
                 if(result.success) setBug(result.data)
+                else {
+                    const err: Error = {
+                        id: "",
+                        type: "ERROR",
+                        message: result.message!
+                    }
+
+                    dispatch(addError(err))
+                }
+            })
+            .catch(err => {
+                const error: Error = {
+                    id: "",
+                    title: NETWORK_ERROR_TITLE,
+                    type: "ERROR",
+                    message: NETWORK_ERROR_MESSAGE
+                }
+
+                dispatch(addError(error))
             })
     }
 
@@ -40,7 +74,37 @@ function BugPage() {
 
                         setBug(bugCopy)
                     }
+                    else {
+                        const error: Error = {
+                            id: "",
+                            title: INTERNAL_ERROR_TITLE,
+                            type: "ERROR",
+                            message: SOMETHING_WENT_WRONG_MESSAGE
+                        }
+    
+                        dispatch(addError(error))
+                    }
                 }
+                else {
+                    const error: Error = {
+                        id: "",
+                        title: REQUEST_ERROR_TITLE,
+                        type: "ERROR",
+                        message: result.message!
+                    }
+
+                    dispatch(addError(error))
+                }
+            })
+            .catch(err => {
+                const error: Error = {
+                    id: "",
+                    title: NETWORK_ERROR_TITLE,
+                    type: "ERROR",
+                    message: NETWORK_ERROR_MESSAGE_ACTION
+                }
+
+                dispatch(addError(error))
             })
     }
 
@@ -72,6 +136,7 @@ function BugPage() {
     return (
         <div>
             <Header title={bug?.title} editable={true} onEdited={onTitleEdited} />
+            <ErrorMessages />
 
             <div className="bug-page-wrapper">
                 <div className="bug-main-section">

@@ -175,7 +175,7 @@ const create = async (project: Project) => {
 
 const update = async (project: Project) => {
     let body: any = {
-        title: project.title
+        title: project.title,
     }
 
     if(project.description !== undefined) body.description = project.description

@@ -10,7 +10,10 @@ import { addError } from "../../features/errorsSlice";
 import ErrorMessages from "../common/errors/ErrorMessages";
 
 const NETWORK_ERROR_TITLE = "Network Error"
-const NETWORK_ERROR_MESSAGE = "Unable to load data. Try to reload the page."
+const NETWORK_ERROR_MESSAGE = "Unable to load data. Please try to reload the page."
+const NETWORK_ERROR_MESSAGE_ACTION = "Unable to execute the action. Please try again."
+
+const REQUEST_ERROR_TITLE = "Request Error"
 
 function ProjectsPage() {
     const dispatch = useAppDispatch()
@@ -50,6 +53,26 @@ function ProjectsPage() {
         projectService.create(newProject)
             .then(result => {
                 if(result.success) setProjects([...projects, result.data])
+                else {
+                    const error: Error = {
+                        id: "",
+                        title: REQUEST_ERROR_TITLE,
+                        type: "ERROR",
+                        message: result.message!
+                    }
+
+                    dispatch(addError(error))
+                }
+            })
+            .catch(err => {
+                const error: Error = {
+                    id: "",
+                    title: NETWORK_ERROR_TITLE,
+                    type: "ERROR",
+                    message: NETWORK_ERROR_MESSAGE_ACTION
+                }
+
+                dispatch(addError(error))
             })
     }
 
@@ -59,6 +82,26 @@ function ProjectsPage() {
                 if(result.success) {
                     setProjects(projects.filter(project => project.id != result.data))
                 }
+                else {
+                    const error: Error = {
+                        id: "",
+                        title: REQUEST_ERROR_TITLE,
+                        type: "ERROR",
+                        message: result.message!
+                    }
+
+                    dispatch(addError(error))
+                }
+            })
+            .catch(err => {
+                const error: Error = {
+                    id: "",
+                    title: NETWORK_ERROR_TITLE,
+                    type: "ERROR",
+                    message: NETWORK_ERROR_MESSAGE_ACTION
+                }
+
+                dispatch(addError(error))
             })
     }
 
