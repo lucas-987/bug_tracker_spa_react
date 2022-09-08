@@ -19,6 +19,9 @@ $error-message-border-color-error: red;
 $error-message-border-color-success: green;
 $error-message-border-color-warning: orange;
 
+$form-error-color: #C80000;
+$form-error-color-light: #FFDBDB;
+
 $blur-backround: rgba($color: #000000, $alpha: 0.5);
 
 $project-background: $papaya-whip;
@@ -36,6 +39,7 @@ $font-stack: (
     //https://codepen.io/sosuke/pen/Pjoqqp
     //https://stackoverflow.com/a/53336754
     //filter: invert(28%) sepia(81%) saturate(6415%) hue-rotate(353deg) brightness(93%) contrast(128%);
+    //#FD0000
     filter: invert(11%) sepia(81%) saturate(7012%) hue-rotate(0deg) brightness(90%) contrast(122%);
 }
 

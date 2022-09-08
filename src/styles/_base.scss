@@ -48,7 +48,12 @@ h1 {
 
         label {
             font-weight: 500;
-            margin: 0rem 1rem 0rem 1rem;
+            margin: 0 1rem 0 1rem;
+        }
+
+        .error-message {
+            display: none;
+            font-size: 0.9rem;
         }
     
         input, textarea, select {
@@ -63,6 +68,20 @@ h1 {
             resize: none;
             min-height: 10rem;
             font-size: 1rem;
+        }
+
+        &.error {
+            color: $form-error-color;
+
+            .error-message {
+                display: block;
+                margin: 0 1rem 0 1rem;
+            }
+
+            input, textarea, select {
+                border: 1px solid $form-error-color;
+                background-color: $form-error-color-light;
+            }
         }
     }
 
