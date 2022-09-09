@@ -8,17 +8,11 @@ import bugService from "../../services/bugService";
 import projectService from "../../services/projectService";
 import Description from "../common/Description";
 import ErrorMessages from "../common/errors/ErrorMessages";
-import Header from "../Header";
+import Header from "../common/header/Header";
 import AddBugAlert from "./AddBugAlert";
 import BugsTable from "./BugsTable";
 import Error from "../../interfaces/Error";
-
-const NETWORK_ERROR_TITLE = "Network Error"
-const NETWORK_ERROR_MESSAGE = "Unable to load data. Please try to reload the page."
-const NETWORK_ERROR_MESSAGE_ACTION = "Unable to execute the action. Please try again."
-
-const REQUEST_ERROR_TITLE = "Request Error"
-const INTERNAL_ERROR_TITLE = "Internal Error"
+import { useTranslation } from "react-i18next";
 
 const SOMETHING_WENT_WRONG_MESSAGE = "Something went wrong. Please try again."
 
@@ -34,6 +28,14 @@ function ProjectPage() {
         const projectId = Number(id)
         getProject(projectId)
     }, []);
+
+    const { t } = useTranslation()
+
+    const NETWORK_ERROR_TITLE = t('errors.global.networkErrorTitle')
+    const NETWORK_ERROR_MESSAGE = t('errors.global.networkErrorMessage')
+    const NETWORK_ERROR_MESSAGE_ACTION = t('errors.global.networkErrorMessageAction')
+    const REQUEST_ERROR_TITLE = t('errors.global.requestErrorTitle')
+    const INTERNAL_ERROR_TITLE = t('errors.global.internalErrorTitle')
 
     const getProject = (id: number) => {
         projectService.getById(id)

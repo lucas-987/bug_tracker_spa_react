@@ -1,15 +1,6 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Bug from "../../interfaces/Bug";
-
-const CLOSE_ISSUE_BUTTON_TEXT = "Close issue"
-const OPEN_ISSUE_BUTTON_TEXT = "Open issue"
-const STATUS_LABEL = "Status :"
-const OPEN = "open"
-const CLOSE = "close"
-const PRIORITY_LABEL = "Priority :"
-const START_DATE_LABEL = "Start date :"
-const END_DATE_LABEL = "End date :"
-const DUE_DATE_LABEL = "Due date :"
 
 interface Props {
     bug: Bug | null | undefined;
@@ -17,6 +8,8 @@ interface Props {
 }
 
 function BugProperties({ bug, onBugUpdated }: Props) {
+    const { t } = useTranslation()
+
     const [editing, setEditing] = useState<boolean>(false);
     const [status, setStatus] = useState<string>(bug != null ? bug.status : "")
     const [priority, setPriority] = useState<number>(bug != null ? bug.priority : 1)
@@ -62,36 +55,36 @@ function BugProperties({ bug, onBugUpdated }: Props) {
                 <img className="cancel-icon" onClick={() => setEditing(false)} src="assets/close.svg" />
                 
                 <div className="property form-group">
-                    <span className="label">{STATUS_LABEL}</span>
+                    <span className="label">{t('bugPage.bugProperties.statusLabel')}</span>
                     <select className="value" value={status}
                         onChange={(e) => setStatus(e.target.value)}>
-                        <option value="open">{OPEN}</option>
-                        <option value="close">{CLOSE}</option>
+                        <option value="open">{t('bugPage.bugProperties.open')}</option>
+                        <option value="close">{t('bugPage.bugProperties.close')}</option>
                     </select>
                 </div>
 
                 <div className="property form-group">
-                    <span className="label">{PRIORITY_LABEL}</span>
+                    <span className="label">{t('bugPage.bugProperties.priorityLabel')}</span>
                     <input className="value" type="number" min={0}
                         value={priority} onChange={(e) => setPriority(Number(e.target.value))} />
                 </div>
                         
                 <div className="dates">
                     <div className="property form-group">
-                        <span className="label">{START_DATE_LABEL}</span>
+                        <span className="label">{t('bugPage.bugProperties.startDateLabel')}</span>
                         <input disabled className="value" type="date"
                             value={(bug != null && bug.start_date != null) ? new Date(bug.start_date).toISOString().split("T")[0] : ""} />
                     </div>
 
                     <div className="property form-group">
-                        <span className="label">{DUE_DATE_LABEL}</span>
+                        <span className="label">{t('bugPage.bugProperties.dueDateLabel')}</span>
                         <input className="value" type="date"
                             value={(dueDate != null) ? new Date(dueDate).toISOString().split("T")[0] : ""}
                             onChange={(e) => setDate(e)} />
                     </div>
 
                     <div className="property form-group">
-                        <span className="label">{END_DATE_LABEL}</span>
+                        <span className="label">{t('bugPage.bugProperties.endDateLabel')}</span>
                         <input disabled className="value" type="date"
                             value={(bug != null && bug.end_date != null) ? new Date(bug.end_date).toISOString().split("T")[0] : ""} />
                     </div>
@@ -102,33 +95,33 @@ function BugProperties({ bug, onBugUpdated }: Props) {
                 <img className="edit-icon" onClick={() => setEditing(true)} src="assets/edit.svg" />
 
                 <div className="property">
-                    <span className="label">{STATUS_LABEL}</span>
+                    <span className="label">{t('bugPage.bugProperties.statusLabel')}</span>
                     <span className="value">{bug?.status}</span>
                 </div>
 
                 <div className="property">
-                    <span className="label">{PRIORITY_LABEL}</span>
+                    <span className="label">{t('bugPage.bugProperties.priorityLabel')}</span>
                     <span className="value">{bug?.priority}</span>
                 </div>
                     
                 <div className="dates">
                     <div className="property">
-                        <span className="label">{START_DATE_LABEL}</span>
+                        <span className="label">{t('bugPage.bugProperties.startDateLabel')}</span>
                         <span className="value">{bug != null && (bug.start_date == null ? "" : new Date(bug.start_date).toLocaleDateString())}</span>
                     </div>
 
                     <div className="property">
-                        <span className="label">{DUE_DATE_LABEL}</span>
+                        <span className="label">{t('bugPage.bugProperties.dueDateLabel')}</span>
                         <span className="value">{bug != null && (bug.due_date == null ? "" : new Date(bug.due_date).toLocaleDateString())}</span>
                     </div>
 
                     <div className="property">
-                        <span className="label">{END_DATE_LABEL}</span>
+                        <span className="label">{t('bugPage.bugProperties.endDateLabel')}</span>
                         <span className="value">{bug != null && (bug.end_date == null ? "" : new Date(bug.end_date).toLocaleDateString())}</span>
                     </div>
                 </div>
                         
-                <button onClick={() => switchStatus()}>{bug?.status === "open" ? CLOSE_ISSUE_BUTTON_TEXT : OPEN_ISSUE_BUTTON_TEXT}</button>
+                <button onClick={() => switchStatus()}>{bug?.status === "open" ? t('bugPage.bugProperties.closeIssueButton') : t('bugPage.bugProperties.openIssueButton')}</button>
             </div>
         }
         </>

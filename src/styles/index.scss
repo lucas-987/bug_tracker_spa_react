@@ -11,12 +11,12 @@
     border: 1px solid $top-bar-border;
     box-shadow: 5px 3px 5px $shadow;
     padding: 5px 0px 5px 0px;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
 
     .top-bar__title-wrapper{
         display: inline-flex;
         justify-content: center;
-        width: 100%;
         
         h1 {
             font-size: 2rem;
@@ -36,6 +36,24 @@
             font-size: 2rem;
             font-weight: normal;
             outline: none;
+        }
+    }
+
+    .top-bar__menu {
+        margin-left: 1rem;
+        margin-right: auto;
+    }
+
+    .top-bar__actions {
+        margin-left: auto;
+        margin-right: 1rem;
+        align-self: center;
+
+        .language-switcher {
+            outline: none;
+            border: 1px solid $google-border;
+            border-radius: 10px;
+            padding: 0.5rem;
         }
     }
 }

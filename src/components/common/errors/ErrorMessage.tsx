@@ -1,15 +1,10 @@
+import { useTranslation } from "react-i18next";
 import { useAppDispatch } from "../../../app/hooks";
 import { removeError } from "../../../features/errorsSlice";
 import Error, { ErrorType } from "../../../interfaces/Error";
 
 interface Props {
     error: Error
-}
-
-const errorTitles: Record<ErrorType, String> = {
-    "ERROR": "Error",
-    "SUCCESS": "Success",
-    "WARNING": "Warning",
 }
 
 const errorColor: Record<ErrorType, String> = {
@@ -21,6 +16,14 @@ const errorColor: Record<ErrorType, String> = {
 function ErrorMessage ({ error }: Props) {
     const dispatch = useAppDispatch()
     
+    const { t } = useTranslation()
+
+    const errorTitles: Record<ErrorType, String> = {
+        "ERROR": t('errors.error'),
+        "SUCCESS": t('errors.success'),
+        "WARNING": t('errors.error'),
+    }
+
     const deleteIconClicked = () => {
         dispatch(removeError(error.id))
     }

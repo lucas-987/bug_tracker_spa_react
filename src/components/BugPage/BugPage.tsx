@@ -4,20 +4,12 @@ import { useAppDispatch } from "../../app/hooks";
 import Bug from "../../interfaces/Bug";
 import bugService from "../../services/bugService";
 import Description from "../common/Description";
-import Header from "../Header";
+import Header from "../common/header/Header";
 import BugProperties from "./BugProperties";
 import Error from "../../interfaces/Error";
 import { addError } from "../../features/errorsSlice";
 import ErrorMessages from "../common/errors/ErrorMessages";
-
-const NETWORK_ERROR_TITLE = "Network Error"
-const NETWORK_ERROR_MESSAGE = "Unable to load data. Please try to reload the page."
-const NETWORK_ERROR_MESSAGE_ACTION = "Unable to execute the action. Please try again."
-
-const REQUEST_ERROR_TITLE = "Request Error"
-const INTERNAL_ERROR_TITLE = "Internal Error"
-
-const SOMETHING_WENT_WRONG_MESSAGE = "Something went wrong. Please try again."
+import { useTranslation } from "react-i18next";
 
 function BugPage() {
     const dispatch = useAppDispatch()
@@ -29,6 +21,15 @@ function BugPage() {
         const bugId: number = Number(id);
         getBug(bugId)
     }, [])
+
+    const { t } = useTranslation()
+
+    const NETWORK_ERROR_TITLE = t('errors.global.networkErrorTitle')
+    const NETWORK_ERROR_MESSAGE = t('errors.global.networkErrorMessage')
+    const NETWORK_ERROR_MESSAGE_ACTION = t('errors.global.networkErrorMessageAction')
+    const REQUEST_ERROR_TITLE = t('errors.global.requestErrorTitle')
+    const INTERNAL_ERROR_TITLE = t('errors.global.internalErrorTitle')
+    const SOMETHING_WENT_WRONG_MESSAGE = t('errors.global.somethingWentWrong')
 
     const getBug = (id: number) => {
         bugService.getById(id)

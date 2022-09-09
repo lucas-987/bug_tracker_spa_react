@@ -1,17 +1,17 @@
+import { useTranslation } from "react-i18next";
+
 interface Props {
     isVisible: boolean;
     isExpanded: boolean;
     onClick: () => void;
 }
 
-const EXPANDED_TEXT = "READ LESS ..."
-const REDUCED_TEXT = "READ MORE ..."
-
 function ReadMoreButton({ isVisible, isExpanded, onClick }: Props) {
+    const { t } = useTranslation()
 
     if(!isVisible) return (<></>);
 
-    let text = isExpanded ? EXPANDED_TEXT : REDUCED_TEXT
+    let text = isExpanded ? t('buttons.readLess') : t('buttons.readMore')
 
     return (
         <div className="read-more-button" onClick={() => onClick()}>{text}</div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import HeaderActions from "./actions/HeaderActions";
 
 interface Props {
     title?: string;
@@ -13,6 +14,10 @@ function Header({ title = DEFAULT_TITLE, editable = false, onEdited }: Props) {
     const [editing, setEditing] = useState<boolean>(false)
     const [newTitle, setNewTitle] = useState<string>(title);
 
+    const { t } = useTranslation();
+    if(title === DEFAULT_TITLE) title = t('common.defaultTitle')
+
+
     const toggleEditing = () => {
         setEditing(!editing);
     }
@@ -24,6 +29,7 @@ function Header({ title = DEFAULT_TITLE, editable = false, onEdited }: Props) {
     
     return (
         <header className="top-bar">
+            <span className="top-bar__menu"></span>
             <span className="top-bar__title-wrapper">
                 {editing ?
                     <>
@@ -38,6 +44,7 @@ function Header({ title = DEFAULT_TITLE, editable = false, onEdited }: Props) {
                     </>
                 }
             </span>
+            <HeaderActions />
         </header>
     );
 }

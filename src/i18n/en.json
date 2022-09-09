@@ -1,0 +1,76 @@
+{
+  "common": {
+    "defaultTitle": "Bug Tracker"
+  },
+
+  "form": {
+    "descriptionLabel": "Description",
+    "descriptionPlaceHolder" : "Description (optionnal) ...",
+    "dueDateLabel": "Due date (optionnal)",
+    "dueDatePlaceHolder": "Due date",
+    "priorityLabel": "Priority",
+    "priorityPlaceHolder": "Priority",
+    "titleLabel": "Title",
+    "titlePlaceHolder": "Title"
+  },
+
+  "buttons": {
+    "create": "Create",
+    "readMore": "READ MORE ...",
+    "readLess": "READ LESS ..."
+  },
+
+  "projectsPage": {
+
+  },
+
+  "projectPage": {
+    "addBugAlertTitle": "Create a new bug",
+
+    "bugsTableHeaders": {
+      "close": "close",
+      "dueDate": "Due date",
+      "endDate": "End date",
+      "open": "open",
+      "priority": "Priority",
+      "startDate": "Start date",
+      "title": "Title"
+    }
+  },
+
+  "bugPage": {
+    "bugProperties": {
+      "close": "close",
+      "closeIssueButton": "Close issue",
+      "descriptionLabel": "Description :",
+      "dueDateLabel": "Due date :",
+      "endDateLabel": "End date :",
+      "open": "open",
+      "openIssueButton": "Open issue",
+      "priorityLabel": "Priority :",
+      "statusLabel": "Status :",
+      "startDateLabel": "Start date :"
+    }
+  },
+
+  "errors": {
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+
+    "global": {
+      "internalErrorTitle": "Internal Error",
+      "networkErrorMessage": "Unable to load data. Please try to reload the page.",
+      "networkErrorMessageAction": "Unable to execute the action. Please try again.",
+      "networkErrorTitle": "Network Error",
+      "requestErrorTitle": "Request Error",
+      "somethingWentWrong": "Something went wrong. Please try again."
+    },
+
+    "formValidation": {
+      "descriptionTooLong": "The title must be less than {{maxChar}} characters (currently {{actualLength}}).",
+      "fieldRequired": "This field is required.",
+      "titleTooLong" : "The description must be less than {{maxChar}} characters (currently {{actualLength}})."
+    }
+  }
+}

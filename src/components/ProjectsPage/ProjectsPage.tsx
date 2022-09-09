@@ -1,19 +1,14 @@
 import { useEffect, useState } from "react";
 import CreateProject from "./CreateProject";
 import Project from "./Project";
-import Header from "../Header";
+import Header from "../common/header/Header";
 import ProjectInterface from "../../interfaces/Project";
 import projectService from "../../services/projectService";
 import Error from "../../interfaces/Error";
 import { useAppDispatch } from "../../app/hooks";
 import { addError } from "../../features/errorsSlice";
 import ErrorMessages from "../common/errors/ErrorMessages";
-
-const NETWORK_ERROR_TITLE = "Network Error"
-const NETWORK_ERROR_MESSAGE = "Unable to load data. Please try to reload the page."
-const NETWORK_ERROR_MESSAGE_ACTION = "Unable to execute the action. Please try again."
-
-const REQUEST_ERROR_TITLE = "Request Error"
+import { useTranslation } from "react-i18next";
 
 function ProjectsPage() {
     const dispatch = useAppDispatch()
@@ -22,6 +17,13 @@ function ProjectsPage() {
     useEffect(() => {
         fetchProjects()
     }, []);
+
+    const { t } = useTranslation()
+
+    const NETWORK_ERROR_TITLE = t('errors.global.networkErrorTitle')
+    const NETWORK_ERROR_MESSAGE = t('errors.global.networkErrorMessage')
+    const NETWORK_ERROR_MESSAGE_ACTION = t('errors.global.networkErrorMessageAction')
+    const REQUEST_ERROR_TITLE = t('errors.global.requestErrorTitle')
 
     const fetchProjects = () => {
         projectService.getAll()

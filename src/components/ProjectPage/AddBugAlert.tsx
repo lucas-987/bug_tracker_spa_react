@@ -1,31 +1,9 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Bug from "../../interfaces/Bug";
 
-const FORM_TITLE = "Create a new bug"
-const TITLE_LABEL = "Title"
-const TITLE_PLACEHOLDER = TITLE_LABEL
-const DESCRIPTION_LABEL = "Description"
-const DESCRIPTION_PLACEHOLDER = "Description (optionnal) ..."
-const CREATE_BUTTON_TEXT = "Create"
-const PRIORITY_LABEL = "Priority"
-const PRIORITY_PLACEHOLDER = PRIORITY_LABEL
-const DUE_DATE_LABEL = "Due date (optionnal)"
-const DUE_DATE_PLACEHOLDER = "Due date"
-
-const FIELD_REQUIRED = "This field is required."
-
-const TITLE_TOO_LONG = ["The title must be less than ", " characters (currently ", ")."]
-const DESCRIPTION_TOO_LONG = ["The description must be less than ", " characters (currently ", ")."]
 const MAX_TITLE_LENGTH = 255
 const MAX_DESCRIPTION_LENGTH = 65535
-
-function fieldToLong(strings: string[], maxChar: number, currentLength: number) {
-    const str0 = strings[0] // ... must be less than
-    const str1 = strings[1] // ... characters ... (currently 
-    const str2 = strings[2] // ).
-
-    return `${str0}${maxChar}${str1}${currentLength}${str2}`
-}
 
 interface Props {
     onClick?: () => void;
@@ -35,6 +13,8 @@ interface Props {
 }
 
 function AddBugAlert({ onClick, onClose, onBugCreated, projectId }: Props) {
+    const { t } = useTranslation()
+
     const [title, setTitle] = useState<string>('')
     const [description, setDescription] = useState<string>('')
     const [priority, setPriority] = useState<number>(1)
@@ -50,17 +30,23 @@ function AddBugAlert({ onClick, onClose, onBugCreated, projectId }: Props) {
 
         //check if the fields are ok
         if(!title) {
-            setTitleError(FIELD_REQUIRED);
+            setTitleError(t('errors.formValidation.fieldRequired'));
             formIsValid = false;
         }
         else if(title.length > MAX_TITLE_LENGTH) {
-            setTitleError(fieldToLong(TITLE_TOO_LONG, MAX_TITLE_LENGTH, title.length));
+            setTitleError(t('errors.formValidation.titleTooLong', {
+                maxChar: MAX_TITLE_LENGTH,
+                actualLength: title.length
+            }));
             formIsValid = false;
         }
         else setTitleError("")
 
         if(description.length > MAX_DESCRIPTION_LENGTH) {
-            setDescriptionError(fieldToLong(DESCRIPTION_TOO_LONG, MAX_DESCRIPTION_LENGTH, description.length));
+            setDescriptionError(t('errors.formValidation.descriptionTooLong', {
+                maxChar: MAX_DESCRIPTION_LENGTH,
+                actualLength: description.length
+            }));
             formIsValid = false;
         }
         else setDescriptionError("")
@@ -98,19 +84,19 @@ function AddBugAlert({ onClick, onClose, onBugCreated, projectId }: Props) {
     return (
         <div className="background-blur" onClick={onBackgroundClicked}>
             <div className="alert">
-                <h1>{FORM_TITLE}</h1>
+                <h1>{t('projectPage.addBugAlertTitle')}</h1>
                 <form className="form" onSubmit={createNewBug}>
                     <div className={"form-group" + (titleError != "" ? " error" : "")}>
-                        <label htmlFor="title">{TITLE_LABEL}</label>
-                        <input name="title" type="text" placeholder={TITLE_PLACEHOLDER}
+                        <label htmlFor="title">{t('form.titleLabel')}</label>
+                        <input name="title" type="text" placeholder={t('form.titlePlaceHolder')}
                             value={title} onChange={(e) => setTitle(e.target.value)} />
                         
                         <span className="error-message">{titleError}</span>
                     </div>
                     
                     <div className={"form-group" + (descriptionError != "" ? " error" : "")}>
-                        <label htmlFor="description">{DESCRIPTION_LABEL}</label>
-                        <textarea name="description" placeholder={DESCRIPTION_PLACEHOLDER}
+                        <label htmlFor="description">{t('form.descriptionLabel')}</label>
+                        <textarea name="description" placeholder={t('form.descriptionPlaceHolder')}
                             rows={10} 
                             value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                         
@@ -118,20 +104,20 @@ function AddBugAlert({ onClick, onClose, onBugCreated, projectId }: Props) {
                     </div>
 
                     <div className={"form-group"/* + (priorityError != "" ? " error" : "")*/}>
-                        <label htmlFor="priority">{PRIORITY_LABEL}</label>
-                        <input name="priority" type="number" placeholder={PRIORITY_PLACEHOLDER} min="0"
+                        <label htmlFor="priority">{t('form.priorityLabel')}</label>
+                        <input name="priority" type="number" placeholder={t('form.priorityPlaceHolder')} min="0"
                             value={priority} onChange={(e) => setPriority(Number(e.target.value))}/>
                         
                         <span className="error-message">{/*priorityError*/}</span>
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="dueDate">{DUE_DATE_LABEL}</label>
-                        <input name="dueDate" type="date" placeholder={DUE_DATE_PLACEHOLDER}
+                        <label htmlFor="dueDate">{t('form.dueDateLabel')}</label>
+                        <input name="dueDate" type="date" placeholder={t('form.dueDatePlaceHolder')}
                             onChange={(e) => setDate(e)}/>
                     </div>
                         
-                    <button>{CREATE_BUTTON_TEXT}</button>
+                    <button>{t('buttons.create')}</button>
                 </form>
             </div>
         </div>
